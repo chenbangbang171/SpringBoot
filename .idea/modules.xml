@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-MybatisPlus/SpringBoot-MybatisPlus.iml" filepath="$PROJECT_DIR$/SpringBoot-MybatisPlus/SpringBoot-MybatisPlus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-MybatisPlusGenerator/SpringBoot-MybatisPlusGenerator.iml" filepath="$PROJECT_DIR$/SpringBoot-MybatisPlusGenerator/SpringBoot-MybatisPlusGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-RabbiteMQ01/SpringBoot-RabbiteMQ01.iml" filepath="$PROJECT_DIR$/SpringBoot-RabbiteMQ01/SpringBoot-RabbiteMQ01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-RabbiteMQ02/SpringBoot-RabbiteMQ02.iml" filepath="$PROJECT_DIR$/SpringBoot-RabbiteMQ02/SpringBoot-RabbiteMQ02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-Shiro/SpringBoot-Shiro.iml" filepath="$PROJECT_DIR$/SpringBoot-Shiro/SpringBoot-Shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-Shiro02/SpringBoot-Shiro02.iml" filepath="$PROJECT_DIR$/SpringBoot-Shiro02/SpringBoot-Shiro02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-csd/SpringBoot-csd.iml" filepath="$PROJECT_DIR$/SpringBoot-csd/SpringBoot-csd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-easyExcel/SpringBoot-easyExcel.iml" filepath="$PROJECT_DIR$/SpringBoot-easyExcel/SpringBoot-easyExcel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-freeMarker/SpringBoot-freeMarker.iml" filepath="$PROJECT_DIR$/SpringBoot-freeMarker/SpringBoot-freeMarker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-layui/SpringBoot-layui.iml" filepath="$PROJECT_DIR$/SpringBoot-layui/SpringBoot-layui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-layui02/SpringBoot-layui02.iml" filepath="$PROJECT_DIR$/SpringBoot-layui02/SpringBoot-layui02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot-redis/SpringBoot-redis.iml" filepath="$PROJECT_DIR$/SpringBoot-redis/SpringBoot-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot01/SpringBoot01.iml" filepath="$PROJECT_DIR$/SpringBoot01/SpringBoot01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot02/SpringBoot02.iml" filepath="$PROJECT_DIR$/SpringBoot02/SpringBoot02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBoot03/SpringBoot03.iml" filepath="$PROJECT_DIR$/SpringBoot03/SpringBoot03.iml" />
+    </modules>
+  </component>
+</project>

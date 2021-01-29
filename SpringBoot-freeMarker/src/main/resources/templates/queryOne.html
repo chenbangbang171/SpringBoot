@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:object="${user}">
+    <!-- *{...}选择表达式一般跟在th:object后，直接选择object中的属性-->
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.age}"></td>
+    <td th:text="${user.address}"></td>
+</form>
+
+</body>
+</html>

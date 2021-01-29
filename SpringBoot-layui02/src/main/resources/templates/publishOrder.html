@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--    <link th:href="@{/static/layui/css/layui.css}" rel="stylesheet">-->
+    <script src="../static/layui/layui.js"></script>
+    <style>
+        #form{
+            width: 900px;
+            margin: auto;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+            /*font-size: 18px;*/
+            color: black;
+        }
+
+        .layui-nav {
+            background-color: #009688;
+        }
+
+        #title {
+            font-size: 40px;
+        }
+
+        #navBar {
+            white-space: nowrap;
+        }
+
+        .layui-form-label{
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="navBar">
+    <ul class="layui-nav " lay-filter="">
+        <i class="layui-nav-item layui-icon layui-icon-release" style="font-size: 40px; color: white;"></i>
+        <li class="layui-nav-item  " style="width:78%"><p id="title">校园信使</p></li>
+        <li class="layui-nav-item ">
+            <a href="/user/main">首页<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<div id="form">
+    <form class="layui-form" action="/order/makeNewOrder">
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务要求</label>
+            <div class="layui-input-block">
+                <input type="text" name="orderRequest" required  lay-verify="required" placeholder="重点要求" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">任务内容</label>
+            <div class="layui-input-block">
+                <textarea name="orderContent" placeholder="请输入你要别人做的详细内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系方式</label>
+            <div class="layui-input-inline" style="margin-left: 12px">
+                <input type="text" name="orderConcatWay" required lay-verify="required" placeholder="请输入联系方式..." autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请输入联系方式，尽量指明是哪种比如qq或微信</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">任务类型</label>
+            <div class="layui-input-block">
+                <select name="orderKindId" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">代取快递</option>
+                    <option value="2">找人带饭</option>
+                    <option value="3">校园顺风车</option>
+                    <option value="4">找人送文件</option>
+                    <option value="5">找人代购</option>
+                    <option value="6">校园少丢丢</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">始末地址</label>
+            <div class="layui-input-inline" style="width: 100px;margin-left: 10px">
+                <input type="text" name="orderstartPosition" placeholder="起始地" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">---</div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="orderEndPosition" placeholder="目的地" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        </div>
+
+        <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">订单价格</label>
+            <div class="layui-input-inline" style="width: 100px;margin-left: 10px">
+                <input type="text" name="orderPrice" placeholder="价格" autocomplete="off" class="layui-input" onkeyup="if(!/^\d+$/.test(this.value)) {alert('只能输入数字!'); this.value=this.value.replace(/[^\d]+/g,'');}">
+            </div>
+            <div class="layui-form-mid layui-word-aux" >只能输入数字</div>
+        </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo" type="submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        // //监听提交
+        // form.on('submit(formDemo)', function(data){
+        //     layer.msg(JSON.stringify(data.field));
+        //     return false;
+        // });
+    });
+</script>
+</html>

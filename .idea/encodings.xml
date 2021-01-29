@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/SpringBoot-MybatisPlus/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-MybatisPlusGenerator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-RabbiteMQ01/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-RabbiteMQ02/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-Shiro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-Shiro02/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-csd/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-easyExcel/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-freeMarker/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-layui/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-layui02/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot-redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot02/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBoot03/src/main/java" charset="UTF-8" />
+  </component>
+</project>

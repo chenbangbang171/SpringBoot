@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 该mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="com.czj.mapper.UserMapper">
+
+    <resultMap id="user" type="com.czj.pojo.User">
+        <id column="user_id" property="userId"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="user_password" property="userPassWord"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_telphone" property="userTelPhone"></result>
+        <result column="user_college" property="userCollege"></result>
+        <result column="user_img" property="userImg"></result>
+        <result column="user_sex" property="userSex"></result>
+        <result column="user_role" property="userRoleId"></result>
+        <result column="user_cash" property="userCash"></result>
+        <result column="user_apart" property="userApart"></result>
+        <result column="user_creditscore" property="UserCreditScore"></result>
+    </resultMap>
+
+    <select id="login" resultMap="user" >
+        select user_id,user_name,user_password,user_email,user_telphone,user_college,user_img,user_sex,user_role,user_cash,user_apart,user_creditscore
+            from  t_user where user_telphone = #{phone} and user_password = #{pwd};
+    </select>
+
+</mapper>

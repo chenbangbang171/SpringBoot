@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 该mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="com.czj.mapper.OrderMapper">
+
+    <resultMap id="order" type="com.czj.pojo.Order">
+        <id column="order_id" property="orderId"></id>
+        <result column="order_starttime" property="orderStartTime"></result>
+        <result column="order_endtime" property="orderEndTime"></result>
+        <result column="order_startposition" property="orderstartPosition"></result>
+        <result column="order_endposition" property="orderEndPosition"></result>
+        <result column="order_content" property="orderContent"></result>
+        <result column="order_kind" property="orderKindId"></result>
+        <result column="order_price" property="orderPrice"></result>
+        <result column="order_request" property="orderRequest"></result>
+        <result column="order_fromuserid" property="orderFromUserId"></result>
+        <result column="order_touserid" property="orderToUserId"></result>
+        <result column="order_concatway" property="orderConcatWay"></result>
+        <result column="order_status" property="orderStatus"></result>
+        <result column="order_priority" property="orderPriority"></result>
+    </resultMap>
+
+    <select id="queryAllOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order  where order_status = 0 ;
+    </select>
+
+    <select id="queryPackagesOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 1 and order_status = 0 ;
+    </select>
+
+    <select id="queryMealOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 2 and order_status = 0  ;
+    </select>
+
+    <select id="queryDidiOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 3 and order_status = 0  ;
+    </select>
+
+    <select id="queryFileOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 4 and order_status = 0  ;
+    </select>
+
+    <select id="queryBuyOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 5 and order_status = 0  ;
+    </select>
+
+    <select id="queryLostOrders" resultMap="order" >
+        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 6 and order_status = 0 ;
+    </select>
+
+    <insert id="makeNewOrder" parameterType="com.czj.pojo.Order" >
+        insert  into t_order(order_startposition,order_endposition,order_content,order_kind,order_price,order_request,order_fromuserid,order_concatway,order_status)
+                    values(#{orderstartPosition},#{orderEndPosition},#{orderContent},#{orderKindId},#{orderPrice},
+                            #{orderRequest},#{orderFromUserId},#{orderConcatWay},#{orderStatus})
+    </insert>
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 该mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="com.czj.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.czj.pojo.User">
+        <id  property="userId"  column="id"></id>
+        <result property="userTel" column="tel"></result>
+        <result property="userPassWord" column="password"></result>
+        <result property="userEmail" column="email"></result>
+        <result property="userInvitation" column="invitation"></result>
+    </resultMap>
+    <select id="login" resultMap="userMap">
+        select id,tel,password,email,invitation from sys_user where tel = #{userTel} and password = #{userPassWord}
+    </select>
+
+</mapper>

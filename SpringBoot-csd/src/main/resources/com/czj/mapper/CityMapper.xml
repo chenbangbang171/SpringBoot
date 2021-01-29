@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 该mapper.xml映射文件的唯一标识符 -->
+<mapper namespace="com.czj.mapper.CityMapper">
+
+    <resultMap id="cityMap" type="com.czj.pojo.City">
+        <id  property="cityId"  column="id"></id>
+        <result property="cityName" column="name"></result>
+        <collection property="cities">
+            <id  property="cityId"  column="id"></id>
+            <result property="cityName" column="name"></result>
+        </collection>
+    </resultMap>
+
+    <select id="queryAllCity" resultMap="cityMap">
+            select c1.id,c1.name,c2.* from sys_city c1, sys_city c2 where c1.id = c2.pid
+    </select>
+
+</mapper>

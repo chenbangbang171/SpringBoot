@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div th:if="${users!=null}">
+
+    <table border="1" width="600">
+        <tr th:each="user,state : ${users}">
+            <td th:text="${state.count}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.address}"></td>
+        </tr>
+    </table>
+
+    <hr>
+    <table border="1" width="600">
+        <!-- 第二个变量，可以获取遍历的元素的状态-->
+        <tr th:each="user,state : ${users}">
+            <td th:text="${state.index}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.address}"></td>>
+        </tr>
+    </table>
+    <hr>
+
+    <table border="1" width="600">
+        <!--如果不设置表示状态的变量，默认遍历的元素的变量名+Stat
+表示状态的变量-->
+        <tr th:each="user : ${users}">
+            <td th:text="${userStat.count}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.address}"></td>
+        </tr>
+    </table>
+
+</div>
+
+<hr color="red">
+
+<table border="1" width="600">
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>生日</th>
+        <th>详情</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${userStat.count}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.address}"></td>
+        <td><a th:href="@{/user/findById(uid=${user.id})}">查询</a></td>
+    </tr>
+</table>
+</body>
+</html>

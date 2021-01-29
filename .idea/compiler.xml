@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringBoot-freeMarker" />
+        <module name="SpringBoot-MybatisPlusGenerator" />
+        <module name="SpringBoot-RabbiteMQ02" />
+        <module name="SpringBoot-RabbiteMQ01" />
+        <module name="SpringBoot-easyExcel" />
+        <module name="SpringBoot-MybatisPlus" />
+        <module name="SpringBoot-Shiro" />
+        <module name="SpringBoot-Shiro02" />
+        <module name="SpringBoot-csd" />
+        <module name="SpringBoot03" />
+        <module name="SpringBoot02" />
+        <module name="SpringBoot-redis" />
+        <module name="SpringBoot-layui02" />
+        <module name="SpringBoot-layui" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SpringBoot-csd" target="1.8" />
+      <module name="SpringBoot-easyExcel" target="1.8" />
+      <module name="SpringBoot-freeMarker" target="1.8" />
+      <module name="SpringBoot-layui" target="1.8" />
+      <module name="SpringBoot-layui02" target="1.8" />
+      <module name="SpringBoot-MybatisPlus" target="1.8" />
+      <module name="SpringBoot-MybatisPlusGenerator" target="1.8" />
+      <module name="SpringBoot-RabbiteMQ01" target="1.8" />
+      <module name="SpringBoot-RabbiteMQ02" target="1.8" />
+      <module name="SpringBoot-redis" target="1.8" />
+      <module name="SpringBoot-Shiro" target="1.8" />
+      <module name="SpringBoot-Shiro02" target="1.8" />
+      <module name="SpringBoot02" target="1.8" />
+      <module name="SpringBoot03" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot-MybatisPlus" options="-parameters" />
+      <module name="SpringBoot-MybatisPlusGenerator" options="-parameters" />
+      <module name="SpringBoot-RabbiteMQ01" options="-parameters" />
+      <module name="SpringBoot-RabbiteMQ02" options="-parameters" />
+      <module name="SpringBoot-Shiro" options="-parameters" />
+      <module name="SpringBoot-Shiro02" options="-parameters" />
+      <module name="SpringBoot-csd" options="-parameters" />
+      <module name="SpringBoot-easyExcel" options="-parameters" />
+      <module name="SpringBoot-freeMarker" options="-parameters" />
+      <module name="SpringBoot-layui" options="-parameters" />
+      <module name="SpringBoot-layui02" options="-parameters" />
+      <module name="SpringBoot-redis" options="-parameters" />
+      <module name="SpringBoot02" options="-parameters" />
+      <module name="SpringBoot03" options="-parameters" />
+    </option>
+  </component>
+</project>

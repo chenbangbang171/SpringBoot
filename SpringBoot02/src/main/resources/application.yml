@@ -1,0 +1,34 @@
+#普通数据的配置
+name: jack
+
+#对象的配置
+user:
+  username: rose
+  password: 123
+
+#配置数组
+array:
+  beijing,
+  tianjin,
+  shanghai
+
+#配置集合
+yangl:
+  test:
+    name: tom
+    arr: 1,jack,2,tom  #这种对象形式的，只能单独写一个对象去接收，所以无法使用@value注解获取
+    list1:
+      - zhangsan
+      - lisi
+    list2:
+      - driver: mysql
+        port: 3306
+      - driver: oracle
+        port: 1521
+    map:
+      key1: value1
+      key2: value2
+
+#端口配置
+server:
+  port: 8080
