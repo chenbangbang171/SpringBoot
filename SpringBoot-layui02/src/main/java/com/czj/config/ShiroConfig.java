@@ -68,8 +68,7 @@ public class ShiroConfig {
         //设置安全管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-        //未认证访问的页面
-        shiroFilterFactoryBean.setLoginUrl("/user/login3");
+
 
         //认证成功跳转的页面
 
@@ -77,26 +76,28 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/user/refuse");
         //通过map配置访问流程（顺序很重要）
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
-        //配置静态资源
-        map.put("/js/**","anon");
-        map.put("/css/**","anon");
-        map.put("/jquery/**","anon");
-        map.put("/layui/**","anon");
-        //配置login页面
-        map.put("/user/userLogin","anon");
+//        //配置静态资源
+//        map.put("/js/**","anon");
+//        map.put("/css/**","anon");
+//        map.put("/jquery/**","anon");
+//        map.put("/layui/**","anon");
+//        //配置login页面
+        map.put("/user/login3","anon");
 
         //配置退出
         map.put("/logout","logout");
 
-        map.put("/user/add","perms[user:add]");
-        map.put("/user/query","perms[user:query]");
-        map.put("/user/update","perms[user:update]");
-        map.put("/user/delete","perms[user:delete]");
+//        map.put("/user/add","perms[user:add]");
+//        map.put("/user/query","perms[user:query]");
+//        map.put("/user/update","perms[user:update]");
+//        map.put("/user/delete","perms[user:delete]");
 
-        //其他页面需要认证才能访问
-        map.put("/**","authc");
+//        //其他页面需要认证才能访问
+//        map.put("/**","authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
+        //未认证访问的页面
+        shiroFilterFactoryBean.setLoginUrl("/user/login3");
         return shiroFilterFactoryBean;
     }
 
