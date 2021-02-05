@@ -97,4 +97,10 @@ public class OrderController {
     }
 
 
+    @RequestMapping("orderManagement")
+    public  String orderManagement()  {
+        return  "/orderManagement";
+    }
+
+
 }

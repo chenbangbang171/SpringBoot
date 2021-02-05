@@ -21,37 +21,37 @@
     </resultMap>
 
     <select id="queryAllOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order  where order_status = 0 ;
     </select>
 
     <select id="queryPackagesOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 1 and order_status = 0 ;
     </select>
 
     <select id="queryMealOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 2 and order_status = 0  ;
     </select>
 
     <select id="queryDidiOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 3 and order_status = 0  ;
     </select>
 
     <select id="queryFileOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 4 and order_status = 0  ;
     </select>
 
     <select id="queryBuyOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 5 and order_status = 0  ;
     </select>
 
     <select id="queryLostOrders" resultMap="order" >
-        select order_id,order_starttime,order_endtime,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
         order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 6 and order_status = 0 ;
     </select>
 

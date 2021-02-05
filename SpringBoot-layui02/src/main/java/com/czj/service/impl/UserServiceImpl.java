@@ -1,10 +1,13 @@
 package com.czj.service.impl;
 
 import com.czj.mapper.UserMapper;
+import com.czj.pojo.Permission;
 import com.czj.pojo.User;
 import com.czj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,5 +18,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String phone, String pwd) {
         return userMapper.login(phone,pwd);
+    }
+
+    @Override
+    public List<Permission> queryAllPermissionsByUserId(int id) {
+        return userMapper.queryAllPermissionsByUserId(id);
+    }
+
+    @Override
+    public List<String> queryAllPermissionsByUserName(String userName) {
+        return userMapper.queryAllPermissionsByUserName(userName);
     }
 }

@@ -3,6 +3,9 @@ package com.czj.controller;
 import com.czj.pojo.User;
 import com.czj.service.UserService;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,17 +64,42 @@ public class UserController {
     public Map<String,String> userLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id = request.getParameter("username");
         String passWord = request.getParameter("password");
-//        PrintWriter writer = response.getWriter();
+        boolean rememberMe = false;
         Map<String, String> map = new HashMap<>();
-        User user = userService.login(id, passWord);
-        if (user != null) {
+
+
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(id, passWord, rememberMe);
+        subject.login(token);
+
+        if (subject.isAuthenticated()) {
+            User user = userService.login(id, passWord);
             System.out.println(user.getUserId());
             request.getSession().setAttribute("id", user.getUserId());
             map.put("msg","success");
             return map;
-        } else {
+        }else {
             map.put("msg","false");
             return map;
         }
+
+
+//        PrintWriter writer = response.getWriter();
+//        User user = userService.login(id, passWord);
+//        if (user != null) {
+//            System.out.println(user.getUserId());
+//            request.getSession().setAttribute("id", user.getUserId());
+//            map.put("msg","success");
+//            return map;
+//        } else {
+//            map.put("msg","false");
+//            return map;
+//        }
     }
+
+    @RequestMapping("userManagement")
+    public  String userManagement()  {
+        return  "/userManagement";
+    }
+
 }

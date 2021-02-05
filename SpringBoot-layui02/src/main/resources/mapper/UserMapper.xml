@@ -23,4 +23,12 @@
             from  t_user where user_telphone = #{phone} and user_password = #{pwd};
     </select>
 
+    <select id="queryAllPermissionsByUserId" resultType="com.czj.pojo.Permission" parameterType="int">
+        select permission_name from t_user ,t_permission where t_user.user_role = t_permission.permission_role_id and t_user.user_id = #{userId};
+    </select>
+
+    <select id="queryAllPermissionsByUserName" resultType="java.lang.String">
+        select permission_name from t_user ,t_permission where t_user.user_role = t_permission.permission_role_id and t_user.user_telphone = #{username};
+    </select>
+
 </mapper>
