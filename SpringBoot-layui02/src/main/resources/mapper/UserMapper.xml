@@ -13,7 +13,7 @@
         <result column="user_img" property="userImg"></result>
         <result column="user_sex" property="userSex"></result>
         <result column="user_role" property="userRoleId"></result>
-        <result column="user_cash" property="userCash"></result>
+        <result column="user_role" property="userCash"></result>
         <result column="user_apart" property="userApart"></result>
         <result column="user_creditscore" property="UserCreditScore"></result>
     </resultMap>
@@ -30,5 +30,23 @@
     <select id="queryAllPermissionsByUserName" resultType="java.lang.String">
         select permission_name from t_user ,t_permission where t_user.user_role = t_permission.permission_role_id and t_user.user_telphone = #{username};
     </select>
+
+    <select id="queryAllUsers" resultMap="user">
+        select user_id,user_name,user_password,user_email,user_telphone,user_college,user_img,user_sex,user_role,user_role,user_apart,user_creditscore
+                from t_user
+    </select>
+
+    <delete id="deleteUserByUserId" parameterType="int">
+        delete  from t_user where user_id=#{id}
+    </delete>
+
+    <update id="updateUserByUserId" parameterType="com.czj.pojo.User">
+        update t_user set user_name=#{userName},user_password=#{userPassWord},user_email=#{userEmail},user_telphone=#{userTelPhone}
+                            ,user_college=#{userCollege},user_img=#{userImg},user_sex=#{userSex},user_role=#{userRoleId},user_apart=#{userApart}
+                            ,user_creditscore=#{UserCreditScore} where user_id = #{userId}
+    </update>
+
+
+
 
 </mapper>

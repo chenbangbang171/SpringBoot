@@ -29,4 +29,19 @@ public class UserServiceImpl implements UserService {
     public List<String> queryAllPermissionsByUserName(String userName) {
         return userMapper.queryAllPermissionsByUserName(userName);
     }
+
+    @Override
+    public List<User> queryAllUsers() {
+        return userMapper.queryAllUsers();
+    }
+
+    @Override
+    public int deleteUserByUserId(int id) {
+        return userMapper.deleteUserByUserId(id);
+    }
+
+    @Override
+    public int updateUserByUserId(User user) {
+        return userMapper.updateUserByUserId(user);
+    }
 }

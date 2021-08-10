@@ -20,6 +20,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> queryPublishedOrders() {
+        return orderMapper.queryPublishedOrders();
+    }
+
+    @Override
+    public int updateOrderStatus(int orderId) {
+        return orderMapper.updateOrderStatus(orderId);
+    }
+
+    @Override
     public List<Order> queryPackages() {
         return orderMapper.queryPackagesOrders();
     }
@@ -27,6 +37,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> queryMealOrders() {
         return orderMapper.queryMealOrders();
+    }
+
+    @Override
+    public int endOrder(int orderId) {
+        return orderMapper.endOrder(orderId);
     }
 
     @Override
@@ -52,5 +67,30 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int makeNewOrder(Order order) {
         return orderMapper.makeNewOrder(order);
+    }
+
+    @Override
+    public int deleteOrderByOrderId(int id) {
+        return orderMapper.deleteOrderByOrderId(id);
+    }
+
+    @Override
+    public int updateOrderByOrderId(Order order) {
+        return orderMapper.updateOrderByOrderId(order);
+    }
+
+    @Override
+    public List<Order> getMyPublishde(int id) {
+        return orderMapper.getMyPublishde(id);
+    }
+
+    @Override
+    public List<Order> getMyRecived(int id) {
+        return orderMapper.getMyRecived(id);
+    }
+
+    @Override
+    public int reciveOrder(int userId, int orderId) {
+        return orderMapper.reciveOrder(userId,orderId);
     }
 }

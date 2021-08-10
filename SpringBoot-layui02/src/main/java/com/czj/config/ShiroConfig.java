@@ -85,7 +85,7 @@ public class ShiroConfig {
         map.put("/user/login3","anon");
 
         //配置退出
-        map.put("/logout","logout");
+        map.put("/user/logout","authc");
 
 //        map.put("/user/add","perms[user:add]");
 //        map.put("/user/query","perms[user:query]");

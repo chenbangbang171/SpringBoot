@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en"  xmlns:shiro="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--    <link th:href="@{/static/layui/css/layui.css}" rel="stylesheet">-->
+    <script src="../static/layui/layui.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+            /*font-size: 18px;*/
+            color: black;
+        }
+
+        .layui-nav {
+            background-color: #009688;
+        }
+
+        #title {
+            font-size: 40px;
+        }
+
+        #navBar {
+            white-space: nowrap;
+        }
+
+    </style>
+</head>
+<body>
+<div id="navBar">
+    <ul class="layui-nav " lay-filter="">
+        <i class="layui-nav-item layui-icon layui-icon-release" style="font-size: 40px; color: white;"></i>
+        <li class="layui-nav-item  " style="width:78%"><p id="title">校园信使</p></li>
+        <li class="layui-nav-item ">
+            <a href="/user/main">首&nbsp;页<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">个人信息</a></dd>
+                <dd><a href="javascript:;">我的订单</a></dd>
+                <dd><a href="/user/logout">退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+    <hr style="width: 100%;">
+    <ul class="layui-nav layui-nav-tree" lay-filter="test" style="display: inline-block; position: absolute">
+        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+        <li class="layui-nav-item"><a href="/order/queryAllOrders">所有任务</a></li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">任务分类</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/order/queryPackages">快递</a></dd>
+                <dd><a href="/order/queryMealOrders">送餐</a></dd>
+                <dd><a href="/order/queryDidiOrders">校园滴滴</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="/order/queryLostOrders">校园少丢丢</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">其他类型</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/order/queryFileOrders" th:value="5">代送文件</a></dd>
+                <dd><a href="/order/queryBuyOrders">校园代购</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item" shiro:hasPermission="admin:admin">
+            <a href="javascript:;">后台管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/user/userManagement">用户管理</a></dd>
+                <dd><a href="/order/orderManagement">订单管理</a></dd>
+            </dl>
+        </li>
+
+    </ul>
+
+
+<div style="text-align: center;width: 1300px;margin-left: 200px">
+
+    <table class="layui-hide" id="test" lay-filter="test" ></table>
+
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">保存</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+
+
+    <script src="/static/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+    <script>
+        layui.use('table', function(){
+            var table = layui.table;
+
+            table.render({
+                elem: '#test'
+                ,url:'/user/getDatas'
+                ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                    title: '提示'
+                    ,layEvent: 'LAYTABLE_TIPS'
+                    ,icon: 'layui-icon-tips'
+                }]
+                ,title: '用户数据表'
+                ,cols: [
+                    [
+                        {type: 'checkbox'}
+                        ,{field:'userId', title:'用户id', width:80,   sort: true}
+                        ,{field:'userName', title:'用户名', width:80, edit: 'text'}
+                        ,{field:'userPassWord', title:'用户密码', width:80, edit: 'text'}
+                        ,{field:'userEmail', title:'用户邮箱', width:180, edit: 'text', sort: true}
+                        ,{field:'userTelPhone', title:'用户电话', width:80}
+                        ,{field:'userCollege', title:'所在大学', width:80}
+                        ,{field:'userImg', title:'头像', width:80, sort: true}
+                        ,{field:'userSex', title:'性别', width:80}
+                        ,{field:'userRoleId', title:'角色', width:80}
+                        ,{field:'userCash', title:'余额', width:120}
+                        ,{field:'userApart', title:'公寓', width:100}
+                        ,{field:'UserCreditScore', title:'信誉分', width:80}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                    ]
+                ]
+                ,page: true
+                ,limit:10
+                ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据，res为从url中get到的数据
+                    var result;
+                    console.log(this);
+                    console.log(JSON.stringify(res));
+                    if(this.page.curr){
+                        result = res.data.slice(this.limit*(this.page.curr-1),this.limit*this.page.curr);
+                    }
+                    else{
+                        result=res.data.slice(0,this.limit);
+                    }
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "count": res.count, //解析数据长度
+                        "data": result //解析数据列表
+                    };
+                }
+            });
+
+            //头工具栏事件
+            table.on('toolbar(test)', function(obj){
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch(obj.event){
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：'+ data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选': '未全选');
+                        break;
+
+                    //自定义头工具栏右侧图标 - 提示
+                    case 'LAYTABLE_TIPS':
+                        layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                        break;
+                };
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                console.log(obj)
+                if(obj.event === 'del'){
+                    layer.confirm('真的删除行么', function(index){
+                        $.ajax({
+                            url:'/user/deleteUserByUserId',
+                            method:'POST',
+                            data:data,
+                            dataType:'JSON',
+                            success:function(res){
+                                if(res.msg=='success'){
+                                    // parent.closeIframe(res.msg);main
+                                    layer.msg(res.msg);
+                                    window.location.href="/user/userManagement";
+                                } else{
+                                    layer.msg(res.msg);
+                                    window.location.href="/user/userManagement";
+                                }
+                            },
+                            error:function (data) {
+                            }
+                        });
+
+
+                        layer.close(index);
+                    });
+                } else if(obj.event === 'edit'){
+                    layer.confirm("确认修改？", function(value, index){
+                        $.ajax({
+                            url:'/user/updateUserByUserId',
+                            method:'POST',
+                            data:data,
+                            dataType:'JSON',
+                            success:function(res){
+                                if(res.msg=='success'){
+                                    // parent.closeIframe(res.msg);main
+                                    layer.msg(res.msg);
+                                    window.location.href="/user/userManagement";
+                                } else{
+                                    layer.msg(res.msg);
+                                    window.location.href="/user/userManagement";
+                                }
+                            },
+                            error:function (data) {
+                            }
+                        });
+
+                        layer.close(index);
+                    });
+                }
+            });
+        });
+    </script>
+
+</div>
+
+
+
+
+</body>
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function(data){
+            console.log(data);
+        });
+    });
+</script>
+</html>

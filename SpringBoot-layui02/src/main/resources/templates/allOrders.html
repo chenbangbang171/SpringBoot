@@ -49,9 +49,9 @@
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;">修改信息</a></dd>
-                <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退了</a></dd>
+                <dd><a href="javascript:;">个人信息</a></dd>
+                <dd><a href="/user/myOrders">我的订单</a></dd>
+                <dd><a href="/user/logout">退出</a></dd>
             </dl>
         </li>
     </ul>
@@ -66,16 +66,11 @@
                 <dd><a href="/order/queryPackages">快递</a></dd>
                 <dd><a href="/order/queryMealOrders">送餐</a></dd>
                 <dd><a href="/order/queryDidiOrders">校园滴滴</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item"><a href="/order/queryLostOrders">校园少丢丢</a></li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">其他类型</a>
-            <dl class="layui-nav-child">
-                <dd><a href="/order/queryFileOrders" th:value="5">代送文件</a></dd>
+                <dd><a href="/order/queryFileOrders">代送文件</a></dd>
                 <dd><a href="/order/queryBuyOrders">校园代购</a></dd>
             </dl>
         </li>
+        <li class="layui-nav-item"><a href="/order/queryLostOrders">校园少丢丢</a></li>
         <li class="layui-nav-item" shiro:hasPermission="admin:admin">
             <a href="javascript:;">后台管理</a>
             <dl class="layui-nav-child">
@@ -92,7 +87,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title" th:text="${order.getOrderRequest()}">任务标题</h4>
-                <p class="card-text" th:text="${order.getOrderContent()}">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+                <p class="card-text" th:text="${order.getOrderContent()}">内容</p>
                 <p style="display: inline"></p>
                 <a style="display: block">地址：
                     <i style="color: lightskyblue" th:text="${order.getOrderstartPosition()}">2020-12-12</i>&nbsp;~
@@ -100,7 +95,8 @@
                 </a>
                 <i  style="font-size: 30px; color: lightskyblue;" th:text="${order.getOrderPrice()}">5</i>
                 <i  style="font-size: 30px; color: lightskyblue" >￥</i>
-                <a href="#" style="font-size: 25px;margin-left: 350px">接单</a>
+                <p th:text="${order.getOrderId()}" style="display:none;" id="orderId"></p>
+                <a href="#" th:onclick="recive()" style="font-size: 25px;margin-left: 350px">接单</a>
             </div>
         </div>
     </div>
@@ -118,5 +114,26 @@
             console.log(data);
         });
     });
+        function recive(){
+            var orderId = document.getElementById("orderId").innerText;
+            $.ajax({
+                url:'/order/recive',
+                method:'POST',
+                data:{"orderId":orderId},
+                dataType:'JSON',
+                success:function(res){
+                    if(res.msg=='success'){
+                        // parent.closeIframe(res.msg);main
+                        window.location.href="/user/toMyRecive";
+                    } else{
+                        window.location.href="/user/login";
+                    }
+                },
+                error:function (data) {
+                    // window.location.href="/user/login";
+                }
+            });
+        }
+
 </script>
 </html>

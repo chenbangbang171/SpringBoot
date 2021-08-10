@@ -50,12 +50,12 @@
         }
     </style>
     <script th:inline="javascript">
-        function toPublish() {
-           window.location.href="/user/publish";
+        function toMyPublish() {
+           window.location.href="/user/toMyPublish";
         }
 
-        function findOrder() {
-           window.location.href="/order/queryAllOrders";
+        function toMyRecive() {
+           window.location.href="/user/toMyRecive";
         }
 
     </script>
@@ -75,7 +75,7 @@
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;">个人信息</a></dd>
+                <dd><a href="">个人信息</a></dd>
                 <dd><a href="/user/myOrders">我的订单</a></dd>
                 <dd><a href="/user/logout">退了</a></dd>
             </dl>
@@ -89,28 +89,28 @@
 </div>
 
 <div class="layui-card" id="card">
-    <div class="layui-card-header" id="cardTitle">任务广场</div>
+    <div class="layui-card-header" id="cardTitle">我发布的</div>
     <div class="layui-card-body">
-        在这里发现你想要帮别人完成的任务，并得到一些酬金
+        在这里查看你曾发布的订单
     </div>
     <div class="layui-card-body">
-        <button type="button" th:onclick="findOrder()" class="layui-btn layui-btn-radius layui-btn-norma" id="button">
+        <button type="button" th:onclick="toMyPublish()" class="layui-btn layui-btn-radius layui-btn-norma" id="button">
             <i class="layui-icon layui-icon-prev"></i>
-            任务广场
+            我发布的
             <i class="layui-icon layui-icon-next"></i>
         </button>
     </div>
 </div>
 <div class="layui-card" id="card">
-    <div class="layui-card-header" id="cardTitle">发布任务</div>
+    <div class="layui-card-header" id="cardTitle">我接收的</div>
     <div class="layui-card-body">
-        在这里发布你需要别人帮你完成的任务，并付出一些酬金
+        在这里查看你接收别人的订单
     </div>
     <div class="layui-card-body">
-        <button type="button" th:onclick="toPublish()" class="layui-btn layui-btn-radius layui-btn-warm" id="button">
+        <button type="button" th:onclick="toMyRecive()" class="layui-btn layui-btn-radius layui-btn-warm" id="button">
 <!--        <button type="button" th:href="@{/user/toPublic}" class="layui-btn layui-btn-radius layui-btn-warm" id="button">-->
             <i class="layui-icon layui-icon-prev"></i>
-            发布任务
+            我接收的
             <i class="layui-icon layui-icon-next"></i>
         </button>
     </div>

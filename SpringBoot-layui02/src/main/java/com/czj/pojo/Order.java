@@ -7,8 +7,6 @@ import java.util.Date;
 @Data
 public class Order {
     private int orderId;
-    private Date orderStartTime;
-    private Date orderEndTime;
     private String orderstartPosition;
     private String orderEndPosition;
     private String orderContent;
@@ -19,6 +17,6 @@ public class Order {
     private int orderToUserId;
     private String orderConcatWay;
     private int orderStatus;
-    private int orderPriority;
+    private String orderNewStatus;
 
 }

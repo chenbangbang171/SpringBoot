@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
+
 
     @RequestMapping("index")
     public String index() {
@@ -43,16 +47,38 @@ public class UserController {
         return "/login-3";
     }
 
-//    @RequestMapping("guangchang")
-//    public String guangchang() {
-//        return "/guangchang";
-//    }
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("id");
+        request.getSession().invalidate();
+        return "/login-3";
+    }
 
      @RequestMapping("public")
     public  String toPublic( )  {
         //去数据库查到所有的订单，带到前端
         return "/allOrders";
     }
+
+  @RequestMapping("myOrders")
+    public  String myOrders( )  {
+       //跳转到我的订单页面，下面有俩选项，一个我的发布，一个我的接收
+        return "/myOrders";
+    }
+
+     @RequestMapping("toMyPublish")
+    public  String toMyPublish( )  {
+        //跳转到我的发布
+        return "/myPublish";
+    }
+
+     @RequestMapping("toMyRecive")
+    public  String toMyRecive( )  {
+        //跳转到我的接收
+        return "/myRecive";
+    }
+
+
 
     @RequestMapping("publish")
     public  String publish()  {
@@ -82,24 +108,50 @@ public class UserController {
             map.put("msg","false");
             return map;
         }
+    }
+
+    @RequestMapping("updateUserByUserId")
+    @ResponseBody
+    public  HashMap<String,String> updateUserByUserId(User user)  {
+        userService.updateUserByUserId(user);
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("msg","success");
+        return map;
+    }
 
 
-//        PrintWriter writer = response.getWriter();
-//        User user = userService.login(id, passWord);
-//        if (user != null) {
-//            System.out.println(user.getUserId());
-//            request.getSession().setAttribute("id", user.getUserId());
-//            map.put("msg","success");
-//            return map;
-//        } else {
-//            map.put("msg","false");
-//            return map;
-//        }
+  @RequestMapping("deleteUserByUserId")
+    @ResponseBody
+    public  HashMap<String,String> deleteUserByUserId(User user)  {
+        userService.deleteUserByUserId(user.getUserId());
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("msg","success");
+        return map;
     }
 
     @RequestMapping("userManagement")
-    public  String userManagement()  {
-        return  "/userManagement";
+    @ResponseBody
+    public  ModelAndView userManagement(ModelAndView modelAndView)  {
+        modelAndView.setViewName("/userManagement");
+        return modelAndView ;
+    }
+
+
+
+    @RequestMapping("getDatas")
+    @ResponseBody
+    public  Map<String, Object> getData()  {
+        List<User> users = userService.queryAllUsers();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("msg","ok");
+        map.put("count",users.size());
+        map.put("data",users);
+        return map;
     }
 
 }

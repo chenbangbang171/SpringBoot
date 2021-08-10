@@ -17,42 +17,55 @@
         <result column="order_touserid" property="orderToUserId"></result>
         <result column="order_concatway" property="orderConcatWay"></result>
         <result column="order_status" property="orderStatus"></result>
-        <result column="order_priority" property="orderPriority"></result>
     </resultMap>
+
+
+    <select id="queryPublishedOrders" resultMap="order" >
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order   where order_touserid = 0;
+    </select>
+
+    <update id="updateOrderStatus" parameterType="int">
+        update t_order set order_status = 1 where order_id = #{orderId}
+    </update>
 
     <select id="queryAllOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order  where order_status = 0 ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order   ;
     </select>
 
     <select id="queryPackagesOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 1 and order_status = 0 ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_kind = 1 and order_status = 0 ;
     </select>
 
     <select id="queryMealOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 2 and order_status = 0  ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_kind = 2 and order_status = 0  ;
     </select>
+
+    <update id="endOrder" parameterType="int">
+        update t_order set    order_status = 2 where order_id = #{orderId}
+    </update>
 
     <select id="queryDidiOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 3 and order_status = 0  ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_kind = 3 and order_status = 0  ;
     </select>
 
     <select id="queryFileOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 4 and order_status = 0  ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_kind = 4 and order_status = 0  ;
     </select>
 
     <select id="queryBuyOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 5 and order_status = 0  ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_kind = 5 and order_status = 0  ;
     </select>
 
     <select id="queryLostOrders" resultMap="order" >
         select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
-        order_fromuserid,order_touserid,order_concatway,order_status,order_priority from  t_order where order_kind = 6 and order_status = 0 ;
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_kind = 6 and order_status = 0 ;
     </select>
 
     <insert id="makeNewOrder" parameterType="com.czj.pojo.Order" >
@@ -60,5 +73,31 @@
                     values(#{orderstartPosition},#{orderEndPosition},#{orderContent},#{orderKindId},#{orderPrice},
                             #{orderRequest},#{orderFromUserId},#{orderConcatWay},#{orderStatus})
     </insert>
+
+    <delete id="deleteOrderByOrderId" parameterType="int">
+        delete  from t_order where order_id = #{orderId}
+    </delete>
+
+    <update id="updateOrderByOrderId"  parameterType="com.czj.pojo.Order">
+        update t_order set order_startposition=#{orderstartPosition},order_endposition=#{orderEndPosition},order_content=#{orderContent}
+                            ,order_kind=#{orderKindId},order_price=#{orderPrice},order_request=#{orderRequest},order_fromuserid=#{orderFromUserId}
+                            ,order_touserid=#{orderToUserId},order_concatway=#{orderConcatWay},order_status=#{orderStatus}  where order_id=#{orderId}
+    </update>
+
+
+    <select id="getMyPublishde" parameterType="int" resultMap="order">
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_fromuserid = #{id}
+    </select>
+
+    <select id="getMyRecived" parameterType="int" resultMap="order">
+        select order_id,order_startposition,order_endposition,order_content,order_kind,order_price,order_request,
+        order_fromuserid,order_touserid,order_concatway,order_status from  t_order where order_touserid = #{id}
+    </select>
+
+    <update id="reciveOrder">
+        update t_order set order_touserid=#{userId} where order_id = #{orderId}
+    </update>
+
 
 </mapper>
