@@ -1,6 +1,5 @@
 package com.czj.mapper;
 
-import com.czj.pojo.Order;
 import com.czj.pojo.Permission;
 import com.czj.pojo.User;
 import org.apache.ibatis.annotations.Param;
@@ -21,5 +20,8 @@ public interface UserMapper {
     int deleteUserByUserId(int id);//根据用户id删除用户
 
     int updateUserByUserId(User user);//根据用户id修改用户信息
+
+    User queryUserByEmail(String email); //根据用户邮箱查询用户
+
 
 }

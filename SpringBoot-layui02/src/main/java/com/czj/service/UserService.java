@@ -5,6 +5,7 @@ import com.czj.pojo.Permission;
 import com.czj.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     User login(String phone, String pwd);
@@ -19,6 +20,9 @@ public interface UserService {
 
     int updateUserByUserId(User user);//根据用户id修改用户信息
 
+    User queryUserByEmail(String email); //根据用户邮箱查询用户
+
+    Map<String,String> loginFail(String email);
 
 
 }

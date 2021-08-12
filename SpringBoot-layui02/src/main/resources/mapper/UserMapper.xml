@@ -20,7 +20,7 @@
 
     <select id="login" resultMap="user" >
         select user_id,user_name,user_password,user_email,user_telphone,user_college,user_img,user_sex,user_role,user_cash,user_apart,user_creditscore
-            from  t_user where user_telphone = #{phone} and user_password = #{pwd};
+            from  t_user where user_email = #{phone} and user_password = #{pwd};
     </select>
 
     <select id="queryAllPermissionsByUserId" resultType="com.czj.pojo.Permission" parameterType="int">
@@ -46,7 +46,10 @@
                             ,user_creditscore=#{UserCreditScore} where user_id = #{userId}
     </update>
 
-
+    <select id="queryUserByEmail" resultMap="user" parameterType="java.lang.String">
+        select user_id,user_name,user_password,user_email,user_telphone,user_college,user_img,user_sex,user_role,user_role,user_apart,user_creditscore
+                from t_user where user_email = #{email}
+    </select>
 
 
 </mapper>

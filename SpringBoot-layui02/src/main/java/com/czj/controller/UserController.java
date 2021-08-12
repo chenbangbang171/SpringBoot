@@ -1,12 +1,17 @@
 package com.czj.controller;
 
 import com.czj.pojo.User;
+//import com.czj.redisUtil.RedisConfig;
+import com.czj.redisUtil.RedisTools;
 import com.czj.service.UserService;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,6 +27,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/user")
@@ -30,7 +37,14 @@ public class UserController {
     private UserService userService;
 
 
+    @Resource
+    RedisConnectionFactory connectionFactory;
 
+    @Resource
+    StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private RedisTools redisTools;
 
     @RequestMapping("index")
     public String index() {
@@ -93,10 +107,16 @@ public class UserController {
         boolean rememberMe = false;
         Map<String, String> map = new HashMap<>();
 
-
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(id, passWord, rememberMe);
-        subject.login(token);
+
+        try {
+            subject.login(token);
+        }catch (Exception e){
+            User user = userService.queryUserByEmail(id);
+            map.put("msg","用户不存在");
+            return user != null ? loginFail(user.getUserEmail()+"") : map;
+        }
 
         if (subject.isAuthenticated()) {
             User user = userService.login(id, passWord);
@@ -140,7 +160,9 @@ public class UserController {
         return modelAndView ;
     }
 
-
+    public Map<String, String> loginFail(String email){
+       return userService.loginFail(email);
+    }
 
     @RequestMapping("getDatas")
     @ResponseBody
